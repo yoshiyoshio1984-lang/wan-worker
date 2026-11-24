@@ -1,0 +1,12 @@
+runpod
+torch
+diffusers>=0.34.0
+transformers
+accelerate
+safetensors
+Pillow
+sentencepiece
+protobuf
+av
+imageio
+imageio-ffmpeg
