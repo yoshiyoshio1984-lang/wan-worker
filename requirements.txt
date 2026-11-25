@@ -8,7 +8,16 @@
 --extra-index-url https://download.pytorch.org/whl/cu128
 torch==2.8.0+cu128
 torchvision==0.23.0+cu128
-diffusers==0.34.0
+# diffusers は 0.35.1 に上げる。Wan2.2-TI2V-5B の VAE設定
+# (vae/config.json, _diffusers_version 0.35.0.dev0) には
+# decoder_base_dim=256 など 0.35 で追加された項目があり、
+# 0.34.0 の AutoencoderKLWan はこれらを無視して
+# decoder を base_dim=160 で作るため、重み (1024ch) と合わず
+# "decoder.conv_in.bias expected shape [640], but got [1024]"
+# でワーカーが起動時に落ちた (2026-11-25)。
+# 0.35.1 は torch 2.8.0 / transformers 4.46.3 と併用できる
+# (基本の依存は huggingface-hub>=0.34.0, safetensors, Pillow 等のみ)。
+diffusers==0.35.1
 transformers==4.46.3
 accelerate==0.34.2
 runpod
