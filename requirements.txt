@@ -1,8 +1,13 @@
+# torch / torchvision は必ずセットで同じCUDAビルドに固定する。
+# 片方だけ上げると torchvision::nms が消えてワーカーが起動時に落ちる
+# (2026-11-25 に Flux で発生: torch だけ最新化され torchvision 0.19 が残った)。
+--extra-index-url https://download.pytorch.org/whl/cu124
+torch==2.4.1+cu124
+torchvision==0.19.1+cu124
+diffusers==0.34.0
+transformers==4.46.3
+accelerate==0.34.2
 runpod
-torch
-diffusers>=0.34.0
-transformers
-accelerate
 safetensors
 Pillow
 sentencepiece
