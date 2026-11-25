@@ -28,3 +28,9 @@ protobuf
 av
 imageio
 imageio-ffmpeg
+# ftfy は Wan の画像→動画パイプラインがプロンプト処理で使うライブラリ。
+# 入っていないと I2V ジョブが "NameError: name 'ftfy' is not defined"
+# (diffusers pipeline_wan_i2v.py) で即失敗する (2026-11-25 15:24 JST)。
+# モデル自体は読み込める (diffusers 0.35.1 で VAE は直った) が、
+# I2V だけこの不足で落ちるため追加する。
+ftfy
